@@ -29,6 +29,16 @@ public class Board {
 		this.columns = columns;
 	}
 	
+	//Retorna uma piece a partir das coordenadas ( linha e coluna )
+	public Piece piece (int row, int column) {
+		return pieces[row][column];
+	}
+	
+	//Retorna uma posição a partir de uma peça
+	
+	public Piece piece(Position position) {
+		return pieces[position.getRow()][position.getColumn()];
+	}
 	
 	
 	
