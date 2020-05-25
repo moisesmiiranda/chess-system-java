@@ -40,6 +40,11 @@ public class Board {
 		return pieces[position.getRow()][position.getColumn()];
 	}
 	
+	//Metodo para inserir um objeto (peça) em uma posição no tabuleiro(matriz)
+	public void placePiece(Piece piece, Position position) {
+		pieces[position.getRow()][position.getColumn()] = piece;
+		piece.position = position;
+	}
 	
 	
 }
