@@ -33,7 +33,7 @@ public class Board {
 		return pieces[row][column];
 	}
 	
-	//Retorna uma posi��o a partir de uma pe�a
+	//Retorna uma posicao a partir de uma peca
 	
 	public Piece piece(Position position) {
 		if (!positionExists(position)) {
@@ -42,7 +42,7 @@ public class Board {
 		return pieces[position.getRow()][position.getColumn()];
 	}
 	
-	//Metodo para inserir um objeto (pe�a) em uma posi��o no tabuleiro(matriz)
+	//Metodo para inserir um objeto (peca) em uma posicao no tabuleiro(matriz)
 	public void placePiece(Piece piece, Position position) {
 		if(thereIsAPiece(position)) {
 			throw new BoardException("There is already a piece on position " + position);
@@ -50,15 +50,29 @@ public class Board {
 		pieces[position.getRow()][position.getColumn()] = piece;
 		piece.position = position;
 	}
-	//retorna se uma posição existe ou não
+	//metodo para remover uma peca
+	public Piece removePiece(Position position) {
+		if(!positionExists(position)) {
+			throw new BoardException("Position not on the board");
+		}
+		if (piece(position) == null) {
+			return null;
+		}
+		Piece aux = piece(position);
+		aux.position = null;
+		pieces[position.getRow()][position.getColumn()] = null;
+		return aux;
+	}
+	
+	//retorna se uma posicao existe ou nao
 	private boolean positionExists(int row, int column) {
 		return row >= 0 && row < rows && column >= 0 && column < columns;
 	}
-	//Retorna se uma determinada posição existe ou não 
+	//Retorna se uma determinada posicao existe ou nao 
 	public boolean positionExists(Position position) {
 		return positionExists(position.getRow(), position.getColumn());
 	}
-	//Testa se há uma peça em uma determinada posição
+	//Testa se ha uma peca em uma determinada posicao
 	public boolean thereIsAPiece(Position position) {
 		if (!positionExists(position)) {
 			throw new BoardException("Position not on the board");
